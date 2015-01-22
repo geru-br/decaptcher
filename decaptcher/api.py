@@ -16,6 +16,8 @@ def post(image, username, password, url=None):
 
     response = requests.post(url, data=data, files=files, verify=False)
 
+    response.data = {}
+
     if response.content:
         try:
             resultcode, majorid, minorid, type_, timeout, text = response.content.split('|')
