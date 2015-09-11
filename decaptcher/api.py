@@ -1,11 +1,18 @@
+import sys
 
 import requests
+
+
+if sys.version_info.major == 3:
+    basestring = str
+
+DEFAULT_URL = 'https://poster.de-captcher.com'
 
 
 def post(image, username, password, url=None):
 
     if not url:
-        url = 'https://poster.de-captcher.com'
+        url = DEFAULT_URL
 
     data = {'username': username, 'password': password, 'pict_to': 0, 'pict_type': 0, 'function': 'picture2', 'submit': 'Send'}
 
@@ -35,9 +42,25 @@ def post(image, username, password, url=None):
 
 def balance(username, password, url=None):
     if not url:
-        url = 'https://poster.de-captcher.com'
+        url = DEFAULT_URL
 
     data = {'username': username, 'password': password, 'function': 'balance', 'submit': 'Send'}
+
+    response = requests.post(url, data=data, verify=False)
+
+    return response
+
+
+def picturebad(username, password, majorid, minorid, url=None):
+    if not url:
+        url = DEFAULT_URL
+
+    data = {
+        'username': username,
+        'password': password,
+        'function': 'picturebad2',
+        'submit': 'Send'
+    }
 
     response = requests.post(url, data=data, verify=False)
 
