@@ -1,3 +1,4 @@
+from __future__ import print_function
 import click
 import logging
 import sys
@@ -34,8 +35,12 @@ def cli(username=None, password=None, debug=None, silent=None):
 def api_post(context, path):
     import api
 
-    response = api.post(path, username=context.parent.params.get('username'), password=context.parent.params.get('password'))
-    print response.data
+    response = api.post(
+        path,
+        username=context.parent.params.get('username'),
+        password=context.parent.params.get('password')
+    )
+    print(response.data)
 
 
 @cli.command(name='balance')
@@ -43,9 +48,27 @@ def api_post(context, path):
 def api_balance(context):
     import api
 
-    response = api.balance(username=context.parent.params.get('username'), password=context.parent.params.get('password'))
-    print response.content
+    response = api.balance(
+        username=context.parent.params.get('username'),
+        password=context.parent.params.get('password')
+    )
+    print(response.content)
 
+
+@cli.command(name='picturebad')
+@click.argument('majorid')
+@click.argument('minorid')
+def api_picturebad(majorid, minorid):
+    import api
+
+    response = api.picturebad(
+        username=context.parent.params.get('username'),
+        password=context.parent.params.get('password'),
+        majorid=majorid,
+        minorid=minorid
+    )
+
+    print(response.content)
 
 if __name__ == '__main__':
     cli()
