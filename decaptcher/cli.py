@@ -58,7 +58,8 @@ def api_balance(context):
 @cli.command(name='picturebad')
 @click.argument('majorid')
 @click.argument('minorid')
-def api_picturebad(majorid, minorid):
+@click.pass_context
+def api_picturebad(context, majorid, minorid):
     import api
 
     response = api.picturebad(
@@ -68,7 +69,7 @@ def api_picturebad(majorid, minorid):
         minorid=minorid
     )
 
-    print(response.content)
+    print('Status Code: {} || Response content: {}'.format(response.status_code, response.content))
 
 if __name__ == '__main__':
     cli()
