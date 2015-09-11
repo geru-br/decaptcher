@@ -1,6 +1,6 @@
 # Decaptcher
 
-A python HTTP POST API based on DeCapatcher HTTP POST API \(*written in PHP\).
+A python HTTP POST API based on DeCapatcher HTTP POST API \(written in PHP\).
 
 ## Usage:
 
