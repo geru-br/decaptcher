@@ -8,7 +8,7 @@ with open(os.path.join(here, 'README.md')) as f:
 with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
 
-requires = []  # open('requirements.txt').readlines()
+requires = open('requirements.txt').readlines()
 
 setup(name='decaptcher',
       version='0.0',
